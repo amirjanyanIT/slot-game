@@ -1,8 +1,17 @@
 export const board = {
-  board: [
-    [null, null, null, null, null],
-    [null, null, null, null, null],
-    [null, null, null, null, null],
+  display: [
+    [7, 7, 7, 7, 7],
+    [7, 7, 7, 7, 7],
+    [7, 7, 7, 7, 7],
   ],
-  rotate () {}
+  rotate() {
+    this.display.forEach((line, lineIndex) => {
+      line.forEach((_position, pIndex) => {
+        const rand = Math.floor(Math.random() * 9) + 1;
+        this.display[lineIndex][pIndex] = rand;
+      });
+    });
+
+    return this.display;
+  },
 };
