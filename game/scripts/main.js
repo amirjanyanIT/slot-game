@@ -12,11 +12,12 @@ window.game = {
   mode: "medium",
   state: "hold",
   initialize() {
+    const display = document.querySelector('.game > .display');
+    const lines = document.querySelectorAll('.game > .display > .line');
+    const copyOfLines = [...lines];
     const boxes = document.querySelectorAll(".game > .display > .line > div");
 
-    boxes.forEach((box) => {
-      box.style.backgroundImage = "url('./assets/7.png')";
-    });
+    copyOfLines.forEach(cL => display.prepend(cL));
 
     const domMoneyDisplayElement = document.querySelector(
       ".game > .state > .money > span"
@@ -99,11 +100,10 @@ window.game = {
 
         if (multiplied) {
           this.state = "win";
-          player.money = player.bid * multiplied;
+          player.money = player.money + player.bid * multiplied;
+        } else {
+          this.state = "lose";
         }
-
-        this.state = "lose";
-
         break;
       }
 
@@ -122,10 +122,10 @@ window.game = {
 
         if (multiplied) {
           this.state = "win";
-          player.money = player.bid * multiplied;
+          player.money = player.money + player.bid * multiplied;
+        } else {
+          this.state = "lose";
         }
-
-        this.state = "lose";
 
         break;
       }
