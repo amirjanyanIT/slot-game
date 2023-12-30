@@ -1,5 +1,6 @@
 import { board } from "./board.js";
 import { combinations } from "./combinations.js";
+import { drawLines } from "./drawLines.js";
 import { rates } from "./rates.js";
 
 const player = {
@@ -12,12 +13,14 @@ window.game = {
   mode: "medium",
   state: "hold",
   initialize() {
-    const display = document.querySelector('.game > .display');
-    const lines = document.querySelectorAll('.game > .display > .line');
+    const display = document.querySelector(".game > .display");
+    const lines = document.querySelectorAll(".game > .display > .line");
     const copyOfLines = [...lines];
-    const boxes = document.querySelectorAll(".game > .display > .line > div");
+    const boxes = document.querySelectorAll(".game > .display > .line > .box");
 
-    copyOfLines.forEach(cL => display.prepend(cL));
+    boxes.forEach((b) => (b.style.backgroudImage = "url(./assets/7.png)"));
+
+    copyOfLines.forEach((cL) => display.prepend(cL));
 
     const domMoneyDisplayElement = document.querySelector(
       ".game > .state > .money > span"
@@ -56,10 +59,11 @@ window.game = {
         );
 
         domActionElement.addEventListener("click", () => {
+          drawLines.clear();
           window.game.bid();
 
           domDisplayLines.forEach((line, index) => {
-            const boxes = line.querySelectorAll("div");
+            const boxes = line.querySelectorAll(".box");
             boxes.forEach((box, bIndex) => {
               box.style.backgroundImage = `url(./assets/${board.display[index][bIndex]}.png)`;
             });
@@ -99,10 +103,11 @@ window.game = {
         }, 0);
 
         if (multiplied) {
-          this.state = "win";
+          drawLines.oneLine(board.display);
+          this.state = "Win!";
           player.money = player.money + player.bid * multiplied;
         } else {
-          this.state = "lose";
+          this.state = "Lose";
         }
         break;
       }
@@ -121,10 +126,15 @@ window.game = {
         );
 
         if (multiplied) {
-          this.state = "win";
+          this.state = "Win!";
+          
+          drawLines.oneLine(oneLineC.length ? board.display : null);
+          drawLines.topAngle(topAngleC.length ? board.display : null);
+          drawLines.bottomAngle(bottomAngleC.length ? board.display : null);
+
           player.money = player.money + player.bid * multiplied;
         } else {
-          this.state = "lose";
+          this.state = "Lose";
         }
 
         break;

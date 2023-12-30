@@ -67,7 +67,39 @@ export const combinations = {
     },
   },
   hard: {
-    topAngleLine(d) {},
-    bottomAngleLine(d) {},
+    topAngleLine(d) {
+      const combo = [];
+      for (let i = 0; i < d.length; i++) {
+        if (i === 0) {
+          combo.push(d[i][i]);
+          continue;
+        }
+
+        if (i === 1 && combo[0] === d[i][i]) {
+          combo.push(d[i][i]);
+        } else if (combo[0] === d[1][i]) {
+          combo.push(d[1][i]);
+        }
+      }
+
+      return combo.length > 1 ? combo : [];
+    },
+    bottomAngleLine(d) {
+      const combo = [];
+      for (let i = 0; i < d.length; i++) {
+        if (i === 0) {
+          combo.push(d[i][i]);
+          continue;
+        }
+
+        if (i === 1 && combo[0] === d[i][i]) {
+          combo.push(d[i][i]);
+        } else if (combo[0] === d[1][i]) {
+          combo.push(d[1][i]);
+        }
+      }
+
+      return combo.length > 1 ? combo : [];
+    },
   },
 };

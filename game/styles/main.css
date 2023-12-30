@@ -9,6 +9,42 @@ body {
   font-size: 16px;
 }
 
+.title {
+  font-size: 5rem;
+}
+
+.title span:nth-child(1) {
+  color: rgb(244, 65, 65);
+}
+
+.title span:nth-child(2) {
+  color: rgb(74, 74, 188);
+}
+
+.title span:nth-child(3) {
+  color: rgb(71, 144, 71);
+}
+
+.title span:nth-child(4) {
+  color: rgb(200, 200, 89);
+}
+
+.title span:nth-child(5) {
+  color: rgb(105, 56, 105);
+}
+
+.title span:nth-child(6) {
+  color: teal;
+}
+
+.title span:nth-child(7) {
+  color: darkolivegreen;
+}
+
+.title span:nth-child(8) {
+  color: rgb(147, 101, 22);
+}
+
 .game {
   margin: 50px auto;
   width: 800px;
@@ -59,7 +95,8 @@ body {
   display: flex;
 }
 
-.game > .display > .line > div {
+.game > .display > .line > .box {
+  position: relative;
   flex: 1;
   height: 120px;
   background-position: center;
@@ -70,12 +107,44 @@ body {
 
 .game > .actions {
   display: flex;
+  flex-direction: row;
   background-color: #3b69d1;
   align-items: center;
+  justify-content: space-around;
+}
+
+.game > .actions > .mode > .types {
+  display: flex;
+  border-color: #ffffff;
   justify-content: space-between;
 }
 
-.game > .actions > .minus {
+.game > .actions > .mode > .types > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  color: white;
+  border-radius: 40px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.game > .actions > .mode {
+  margin: 10px;
+}
+.game > .actions > .mode > .title {
+  color: white;
+}
+
+
+.game > .actions > .bet  {
+  display: flex;
+  width: 300px;
+}
+
+.game > .actions > .bet > .minus {
   cursor: pointer;
   height: 100px;
   flex: 0 0 100px;
@@ -87,7 +156,7 @@ body {
   font-size: 2rem;
   color: white;
 }
-.game > .actions > .bet {
+.game > .actions > .bet > .start {
   cursor: pointer;
   height: 100px;
   flex: 0 0 100px;
@@ -100,7 +169,7 @@ body {
   color: white;
 }
 
-.game > .actions > .plus {
+.game > .actions > .bet > .plus {
   cursor: pointer;
   height: 100px;
   flex: 0 0 100px;

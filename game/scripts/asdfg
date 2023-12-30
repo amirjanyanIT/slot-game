@@ -1,0 +1,84 @@
+const display = [
+    [1,2,2,2,2],
+    [2,7,7,7,7],
+    [1,2,2,2,2]
+];
+
+const angle = (d) => {
+    const combo = [];
+    
+    for (let i = 0; i < d.length - 1; i++) {
+        combo.push([d[i][i]]);
+        for (let j = 0; j < (display[0][0].length - 1); j++) {
+            if(j === 1) {
+                switch(i) {
+                    case 0: {
+                        const isEqual = combo[i][0] === d[i][1];
+                        
+                        if(isEqual) {
+                            combo[i].push(d[i][1]);
+                        }
+                        
+                        break;
+                    }
+                    case 1: {
+                        const isEqualTopAngle = combo[i][0] === d[0][1];
+                        const isEqualBottomAngle = combo[i][0] === d[2][1];
+                        
+                        if(isEqualTopAngle) {
+                            combo[i].push(d[0][1]);
+                        }
+                        
+                        if(isEqualBottomAngle) {
+                            combo[i].push(d[2][1]);
+                        }
+                        
+                        break;
+                    }
+                    case 2: {
+                        const isEqual = combo[i][0] === combo[1][1]; 
+                        
+                        combo[i].push(combo[1][1]);
+                        
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    
+    for (let i = 2; i < d.length - 1; i++) {
+        for (let j = 2; j < d.length - 1; j++) {
+            switch(i) {
+                case 0: {
+                    const isEqual = combo[i][0] === d[i][1];
+                    
+                    
+                    
+                    
+                    break;
+                }
+                case 1: {
+                    const isEqual = combo[i][0] === d[i][1];
+                    
+                    
+                    
+                    break;
+                }
+                case 2: {
+                    const isEqual = combo[i][0] === d[i][1];
+                    
+                    
+                    
+                    break;
+                }
+            }
+        }
+        
+    }
+    
+    
+    return combo;
+}
+
+console.log(angle(display))
